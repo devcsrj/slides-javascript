@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>JavaScript Primer</title>
+
+        <meta name="description" content="Visual presentation for my upcoming seminars">
+        <meta name="author" content="Reijhanniel Jearl Campos">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+        <style>
+            ul.dash {
+                list-style: none;
+                margin-left: 0;
+                padding-left: 1em;
+            }
+            ul.dash li:before {
+                display: inline-block;
+                content: "-";
+                width: 1em;
+                margin-left: -1em;
+            } 
+        </style>
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>JavaScript Primer</h1>
+                    <h3>11.19.2015</h3>
+                    <p>
+                        <small>By <a href="http://twitter.com/devcsrj">@devcsrj</a></small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Contents</h2>
+                    <ul>
+                        <li>About JS</li>
+                        <li>Getting Started</li>
+                        <li>Fundamentals</li>
+                        <li>The DOM</li>
+                        <li>"Write less, do more"</li>
+                        <li>The DOM, Revisited</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>The programming language of the Web</h3>
+                        <!--Taken from http://blog.teamtreehouse.com/progressive-enhancement-past-present-future-->
+                        <img src="images/frontend-progressive-enhancement.png" alt="Web frontend technology triad"/>
+                        <br>
+                    </section>
+                    <section>
+                        <h3>Java is to JavaScript as Car is to Carpet</h3>
+                        <ul class="dash">
+                            <li>JS started as Mocha, then became LiveScript</li>
+                            <li>Was named JavaScript after Netscape-Sun <a href="http://www.infoworld.com/article/2653798/application-development/javascript-creator-ponders-past--future.html">agreement</a></li>
+                            <li>Created by <a href="https://brendaneich.com">Brendan Eich</a> (co-founded the Mozilla project)</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Getting Started</h2>
+                        <p><b>What you need: </b> A browser</p>
+                        <!--Taken from http://clickherelabs.com/2015/03/browser-support-more-like-device-support/-->
+                        <img src="images/browser-logos.png" alt="Browser logos"/>
+                    </section>
+                    <section>
+                        <h3>On Firefox</h3>
+                        <ul class="dash">
+                            <li> Open Web Console
+                                <ul class="dash">
+                                    <li>Ctrl + Shift + K</li>
+                                    <li>Tools &gt; Web Developer &gt; Web Console</li>
+                                </ul>
+                            </li>
+                            <li> Type and Enter
+                                <ul class="dash">
+                                    <li><code>console.log( "Oh yeah" )</code></li>
+                                    <li><code>alert( "Awesome" )</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <img src='images/firefox-web-console.png' alt="Firefox web console"/>
+                    </section>
+                    <section>
+                        <h3>On Chrome</h3>
+                        <ul class="dash">
+                            <li> Open Web Console
+                                <ul class="dash">
+                                    <li>Ctrl + Shift + J</li>
+                                    <li>(or) Menu > More Tools > Developer Tools > Console Tab</li>
+                                </ul>
+                            </li>
+                            <li> Type and Enter
+                                <ul class="dash">
+                                    <li><code>console.log( "Oh yeah" )</code></li>
+                                    <li><code>alert( "Awesome" )</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <img src='images/chrome-web-console.png' alt="Chrome web console"/>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>Fundamentals: Lexical Structure</h3>
+                        <ul>
+                            <li>Case Sensitive - <code>while</code>, not <code>While</code>, or <code>WHILE</code></li>
+                            <li>Comments
+                                <pre><code data-trim contenteditable>
+// This is a one-liner comment
+/* This is another comment */ // this one too
+/*
+ * Multiple-lined comment.
+ * Yep.
+ */                                    
+                                    </code></pre>
+                            </li>
+                            <li>Identifiers - must begin with a letter, _ or $
+                                <pre><code data-trim contenteditable>
+// Legal identifiers
+var i, my_variable_name, v13, _dummy, $str;
+                                    </code></pre>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Fundamentals: Lexical Structure II</h3>
+                        <ul>
+                            <li>Semicolons - Optional, but take note:</li>
+                        </ul>
+                        <pre><code data-trim contenteditable>
+var a
+a
+=
+3
+console.log(a)
+// Interpreted as: var a; a = 3; console.log(a);
+
+var y = x + f
+(a+b).toString()
+// Interpreted as: var y = x + f(a+b).toString();
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Fundamentals: Types, Values and Variables</h3>
+                        <pre><code data-trim contenteditable>
+var x           // Declare a variable named x
+    
+x = 0;          // Now variable x has the value of 0
+x               // => 0: A variable evaluates to its value
+
+// JS supports several types of values
+x = 1;                  // Numbers
+x = 0.01;               // One number type for integer and reals
+x = "hello world";      // Strings
+x = 'JavaScript';       // Single quote marks also delimit Strings
+x = true;               // Boolean values
+x = false;
+
+x = null;               // A special value denoting "no value"
+x = undefined;          // Undefined is like null
+                            </code></pre>
+                    </section>
+                    <section>
+                        <h3>Fundamentals: Comparison Operators</h3>
+                        <pre><code data-trim contenteditable>
+7 == 7              // true
+7 === "7"           // false 
+7 === 7             // true
+
+"auf" != "hau"      // true
+"auf" !== "hau"     // true
+
+7 > 7               // false
+7 >= 7              // true
+7 < 1               // false
+7 <= 1              // false
+                            </code></pre>
+                    </section>
+                    <section>
+                        <h3>Fundamentals: Arithmetic Operators</h3>
+                        <small>Standard: addition(+), subtraction(-), multiplication(*),division(/)</small>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Operator</th>
+                                    <th>Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Remainder (%)</td>
+                                    <td>12 % 5 returns 2</td>
+                                </tr>
+                                <tr>
+                                    <td>Increment (++)</td>
+                                    <td>if x is 3, then x++ is 4</td>
+                                </tr>
+                                <tr>
+                                    <td>Decrement (--)</td>
+                                    <td>if x is 3, then x-- is 2</td>
+                                </tr>
+                                <tr>
+                                    <td>Unary negation (-)</td>
+                                    <td>if x is 3, then -x is -3</td>
+                                </tr>
+                                <tr>
+                                    <td>Unary plus (-)</td>
+                                    <td>
+                                        +"3" returns 3 <br/>
+                                        +true returns 1
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Exponentiation</td>
+                                    <td>2 ** 3 returns 8</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+
+                            // Full list of configuration options available at:
+                            // https://github.com/hakimel/reveal.js#configuration
+                            Reveal.initialize({
+                                controls: true,
+                                progress: true,
+                                history: true,
+                                center: true,
+                                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                                // Optional reveal.js plugins
+                                dependencies: [
+                                    {src: 'lib/js/classList.js', condition: function () {
+                                            return !document.body.classList;
+                                        }},
+                                    {src: 'plugin/markdown/marked.js', condition: function () {
+                                            return !!document.querySelector('[data-markdown]');
+                                        }},
+                                    {src: 'plugin/markdown/markdown.js', condition: function () {
+                                            return !!document.querySelector('[data-markdown]');
+                                        }},
+                                    {src: 'plugin/highlight/highlight.js', async: true, condition: function () {
+                                            return !!document.querySelector('pre code');
+                                        }, callback: function () {
+                                            hljs.initHighlightingOnLoad();
+                                        }},
+                                    {src: 'plugin/zoom-js/zoom.js', async: true},
+                                    {src: 'plugin/notes/notes.js', async: true}
+                                ]
+                            });
+
+        </script>
+
+    </body>
+</html>
