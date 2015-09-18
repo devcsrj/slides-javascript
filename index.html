@@ -6,16 +6,17 @@
 
         <title>JavaScript Primer</title>
 
-        <meta name="description" content="Visual presentation for my upcoming seminars">
-        <meta name="author" content="Reijhanniel Jearl Campos">
+        <meta name="description" content="Visual presentation for my upcoming seminars"/>
+        <meta name="author" content="Reijhanniel Jearl Campos"/>
 
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
 
-        <link rel="stylesheet" href="css/reveal.css">
-        <link rel="stylesheet" href="css/theme/black.css" id="theme">
+        <link rel="icon" type="image/ico" href="favicon.ico"/>
+        <link rel="stylesheet" href="css/reveal.css"/>
+        <link rel="stylesheet" href="css/theme/black.css" id="theme"/>
 
         <!-- Code syntax highlighting -->
         <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -68,7 +69,6 @@
                         <li>Core JavaScript</li>
                         <li>Fundamentals</li>
                         <li>Client-Side JavaScript</li>
-                        <li>"Write less, do more"</li>
                     </ul>
                 </section>
 
@@ -374,8 +374,88 @@ document // we focus on this!
                         <!--Taken from http://www.w3schools.com/js/pic_htmltree.gif-->
                         <img src="images/dom.gif" alt="Document object model"/>
                     </section>
-                </section>
+                    <section>
+                        <p id="caption-id">Try the following:</p>
+                        <pre><code data-trim contenteditable>
+document // to see the document object model
 
+// Adds a `style` attribute to &lt;body&gt; tag
+document.body.style.backgroundColor = 'yellow' 
+
+// Sets a new value for &lt;title&gt; tag
+document.title = "Look at the tab name!"
+
+// Returns an array of &lt;section&gt; tags
+document.getElementsByTagName( "section" );
+
+// Sets HTML content of element with id of `caption-id`,
+document.getElementById( "caption-id" ).innerHTML = "Yo"
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Events <button id="btn-for-event">Do something!</button></h3>
+                        <pre><code data-trim contenteditable>
+// try `Inspect Element`!
+var btn = document.getElementById( "btn-for-event" );
+var poke = function( event ){ // expect an `event` variable
+    event.target.innerHTML = "You poked me!"
+}
+
+// attach `poke` function `onclick`
+btn.addEventListener( "click", poke );
+// or: btn.onclick = poke;
+
+// attach an anonymous function `onclick`
+btn.addEventListener( "click", function( event ) {
+    alert( "Poked you back!" );
+});
+
+// remove `poke` function `onclick`
+btn.removeEventListener( "click", poke );
+
+// More Events @see MDN Event ref
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Scripting</h3>
+                        <pre><code data-trim contenteditable>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;...&lt;/head&gt;
+    &lt;body&gt;
+        ...
+
+        &lt;script&gt;
+            // Do magic
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Scripting II</h3>
+                        <pre><code data-trim>
+&lt;div id="div1"&gt;The text above has been created dynamically.&lt;/div&gt;
+
+&lt;script&gt;
+  document.body.onload = addElement;
+
+  function addElement () { 
+    // create a new div element and give it some content 
+    var newDiv = document.createElement( "div" ); 
+    var newContent = document.createTextNode("Hi there and greetings!"); 
+    //add the text node to the newly created div. 
+    newDiv.appendChild(newContent);
+
+    // add the newly created element and its content into the DOM 
+    var currentDiv = document.getElementById( "div1" ); 
+    document.body.insertBefore( newDiv, currentDiv ); 
+  }    
+&lt;/script&gt;
+                        </code></pre>
+                    </section>
+                </section>
             </div>
 
         </div>
