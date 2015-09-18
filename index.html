@@ -65,27 +65,21 @@
                     <h2>Contents</h2>
                     <ul>
                         <li>About JS</li>
-                        <li>Getting Started</li>
+                        <li>Core JavaScript</li>
                         <li>Fundamentals</li>
-                        <li>The DOM</li>
+                        <li>Client-Side JavaScript</li>
                         <li>"Write less, do more"</li>
-                        <li>The DOM, Revisited</li>
                     </ul>
                 </section>
 
                 <section>
-                    <section>
-                        <h3>The programming language of the Web</h3>
-                        <!--Taken from http://blog.teamtreehouse.com/progressive-enhancement-past-present-future-->
-                        <img src="images/frontend-progressive-enhancement.png" alt="Web frontend technology triad"/>
-                        <br>
-                    </section>
                     <section>
                         <h3>Java is to JavaScript as Car is to Carpet</h3>
                         <ul class="dash">
                             <li>JS started as Mocha, then became LiveScript</li>
                             <li>Was named JavaScript after Netscape-Sun <a href="http://www.infoworld.com/article/2653798/application-development/javascript-creator-ponders-past--future.html">agreement</a></li>
                             <li>Created by <a href="https://brendaneich.com">Brendan Eich</a> (co-founded the Mozilla project)</li>
+                            <li>Interpreted, dynamically-typed</li>
                         </ul>
                     </section>
                 </section>
@@ -253,6 +247,133 @@ x = undefined;          // Undefined is like null
                             </tbody>
                         </table>
                     </section>
+                    <section>
+                        <h3>Fundamentals: Control Structures</h3>
+                        <pre><code data-trim contenteditable>
+if( condition ) {
+    // Executes if condition is true
+} else {
+    // Else what
+}
+
+switch( expression ) {
+    case 'value1':
+        // Execute code if expression is 'value1'
+        break;
+    case 'value2':
+        // Execute code if expression is 'value2'
+        break;
+    case default:
+        // Execute code if expression does not match any
+        // `default` is a reserved keyword
+        // `break` optional, since it is the end of switch
+}
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Fundamentals: Control Structures II</h3>
+                        <pre><code data-trim contenteditable>
+while( condition ) {
+    // Execute this every time condition is true
+}
+
+for( init ; condition ; iterator ){
+    // Execute until condition is met
+}
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Fundamentals: More Types - Array</h3>
+                        <pre><code>
+var universities = [ "auf", "hau", "spcf", "ama" ]    
+var bankAccounts = [ 10001, 10002, 10003, 10004 ]
+// You can mix datatypes
+var stuff = [ 5, 'random', [], "I wonder who does this", true, 50.0 ]
+
+// Methods - @see Array.prototype
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Fundamentals: Functions</h3>
+                        <pre><code data-trim contenteditable>
+function average ( arr ) {
+    var mean = 0;
+    for( var i = 0; i &lt; arr.length; i ++ )
+        mean += arr[ i ];
+    return mean / arr.length
+}
+
+average ( [ 85, 88, 75, 83 ] ); // 82.75
+
+var madEcho = function ( what ) {
+    return what.toUpperCase() + "!!!!"
+}
+madEcho // prints function declaration
+madEcho ( "hi" ); // "HI!!!!"
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Fundamentals: Functions II</h3>
+                        <pre><code data-trim contenteditable>
+var greet = function ( greeting, name ){
+    alert( greeting + name );
+}
+greet // prints function declration
+greet( 'Hello Master ', 'RJ' );
+
+// IIFE (iffy) - Immediately Invoked Function Expression
+(function( greeting, name ){
+    alert( greeting + name );
+})( 'Hello Master ', 'RJ' );
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Fundamentals: More Types - Object</h3>
+                        <pre><code>
+var person = {
+    firstName : "Reijhanniel Jearl",
+    lastName : "Campos",
+    age : 20,
+    likes : [ "pizza", "all-meat pizza", "more pizza" ],
+    introduce : function (){
+        return "Hi, I am " + this.firstName + " " + this.lastName 
+            + ", " + this.age + ". I like " + this.likes
+    }
+}
+
+person.introduce()
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>Client-Side JavaScript</h3>
+                        <!--Taken from http://blog.teamtreehouse.com/progressive-enhancement-past-present-future-->
+                        <img src="images/frontend-progressive-enhancement.png" alt="Web frontend technology triad"/>
+                        <br>
+                    </section>
+                    <section>
+                        <h3>The Window object</h3>
+                        <p>is the main entry point to all client-side JavaScript features and APIs.</p>
+                        <pre><code>
+window.location = "http://github.com"
+// The alert() method is a method of the `window` object
+// Same as:
+setTimeout( function() { alert( "Sup" )  }, 2000 );
+location
+
+document // we focus on this!
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3>Document Object Model (DOM)</h3>
+                        <blockquote>
+                            .. a platform- and language-neutral interface that will allow programs and scripts to dynamically access and update the content, structure and style of documents - <i>w3.org</i></p>
+                        </blockquote>
+                        <!--Taken from http://www.w3schools.com/js/pic_htmltree.gif-->
+                        <img src="images/dom.gif" alt="Document object model"/>
+                    </section>
                 </section>
 
             </div>
@@ -264,35 +385,35 @@ x = undefined;          // Undefined is like null
 
         <script>
 
-                            // Full list of configuration options available at:
-                            // https://github.com/hakimel/reveal.js#configuration
-                            Reveal.initialize({
-                                controls: true,
-                                progress: true,
-                                history: true,
-                                center: true,
-                                transition: 'slide', // none/fade/slide/convex/concave/zoom
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
 
-                                // Optional reveal.js plugins
-                                dependencies: [
-                                    {src: 'lib/js/classList.js', condition: function () {
-                                            return !document.body.classList;
-                                        }},
-                                    {src: 'plugin/markdown/marked.js', condition: function () {
-                                            return !!document.querySelector('[data-markdown]');
-                                        }},
-                                    {src: 'plugin/markdown/markdown.js', condition: function () {
-                                            return !!document.querySelector('[data-markdown]');
-                                        }},
-                                    {src: 'plugin/highlight/highlight.js', async: true, condition: function () {
-                                            return !!document.querySelector('pre code');
-                                        }, callback: function () {
-                                            hljs.initHighlightingOnLoad();
-                                        }},
-                                    {src: 'plugin/zoom-js/zoom.js', async: true},
-                                    {src: 'plugin/notes/notes.js', async: true}
-                                ]
-                            });
+                // Optional reveal.js plugins
+                dependencies: [
+                    {src: 'lib/js/classList.js', condition: function () {
+                            return !document.body.classList;
+                        }},
+                    {src: 'plugin/markdown/marked.js', condition: function () {
+                            return !!document.querySelector('[data-markdown]');
+                        }},
+                    {src: 'plugin/markdown/markdown.js', condition: function () {
+                            return !!document.querySelector('[data-markdown]');
+                        }},
+                    {src: 'plugin/highlight/highlight.js', async: true, condition: function () {
+                            return !!document.querySelector('pre code');
+                        }, callback: function () {
+                            hljs.initHighlightingOnLoad();
+                        }},
+                    {src: 'plugin/zoom-js/zoom.js', async: true},
+                    {src: 'plugin/notes/notes.js', async: true}
+                ]
+            });
 
         </script>
 
